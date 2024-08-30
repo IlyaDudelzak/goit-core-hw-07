@@ -24,7 +24,8 @@ class Phone(Field):
 
 class Birthday(Field):
     def __init__(self, value:datetime):
-        self.value = value
+        self.value = value.strftime("%d.%m.%Y")
+        self.value_ = value
 
 class Record:
     def __init__(self, name: str):
