@@ -23,9 +23,8 @@ class Phone(Field):
         super().__init__(value)
 
 class Birthday(Field):
-    def __init__(self, value:datetime):
-        self.value = value.strftime("%d.%m.%Y")
-        self.value_ = value
+    def get_date(self):
+         return datetime.strptime
 
 class Record:
     def __init__(self, name: str):
@@ -35,14 +34,14 @@ class Record:
 
     def find_phone(self, phone):
          for i in self.phones:
-              if(i.value == phone):
+              if(str(i) == phone):
                    return Phone(phone)
 
          return None
 
     def has_phone(self, phone):
          for i in self.phones:
-              if(i.value == i):
+              if(i.value == phone):
                    return True
          return False
     
@@ -74,7 +73,12 @@ class Record:
          return '; '.join(p.value for p in self.phones)
 
     def __str__(self):
-        return f"Contact name: {self.name.value}, phones: {self.get_phones()}"
+         res = f"Contact name: {self.name.value}"
+         if(len(self.phones) > 0):
+              res += f", Phones: {self.get_phones()}"
+         if(self.birthday != None):
+              res += f", Birthday: {self.birthday}"
+         return 
 
 class AddressBook(UserDict):
     def has_record(self, name:str):

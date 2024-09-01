@@ -32,8 +32,8 @@ def add_handler(caller:Assistant, name:str, phone:str = ""):
             res += f"Record {name} not found."
     return res
 
-@assistant.command_handler("change", (str, int, int))
-def change_handler(caller:Assistant, name:str, phone1:int, phone2:int):
+@assistant.command_handler("change", (str, str))
+def change_handler(caller:Assistant, name:str, phone1:str, phone2:str):
     book = caller.book
     if(not book.has_record(name)):
         return f"Record {name} not found."
@@ -62,6 +62,7 @@ def get_contacts(caller:Assistant):
 
 @assistant.command_handler("add-birthday", (str, datetime))
 def add_birthday(caller:Assistant, name:str, birthday:datetime):
+    print(type(birthday))
     book = caller.book
     if(not book.has_record(name)):
         return f"Record {name} not found."
@@ -93,5 +94,12 @@ def get_birthdays(caller:Assistant, days = 7):
             res += "\n"
         res += i["name"] + ": " + i["congratulation_date"]
     return res
+
+@assistant.command_handler("test", str)
+def test(caller:Assistant, name:str):
+    print(caller.book.find(name))
+
+print(assistant.handle_input("add penis"))
+print(assistant.handle_input("test penis"))
 
 assistant.mainLoop()
