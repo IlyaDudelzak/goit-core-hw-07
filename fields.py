@@ -1,6 +1,6 @@
 from collections import UserDict
 from datetime import datetime
-from bithday import get_upcoming_birthdays
+from bithday import get_upcoming_birthdays, string_to_date
 
 class Field:
     def __init__(self, value: str):
@@ -23,8 +23,11 @@ class Phone(Field):
         super().__init__(value)
 
 class Birthday(Field):
+    def __init__(self, date):
+         self.value = date
+0000000000
     def get_date(self):
-         return datetime.strptime
+         return string_to_date(self.value)
 
 class Record:
     def __init__(self, name: str):
@@ -78,7 +81,7 @@ class Record:
               res += f", Phones: {self.get_phones()}"
          if(self.birthday != None):
               res += f", Birthday: {self.birthday}"
-         return 
+         return res
 
 class AddressBook(UserDict):
     def has_record(self, name:str):

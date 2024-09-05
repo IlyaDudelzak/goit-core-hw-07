@@ -1,4 +1,5 @@
 from fields import AddressBook, datetime
+from bithday import string_to_date
 from collections import defaultdict
 import re
 
@@ -66,6 +67,8 @@ class Assistant:
         for handler in handlers:
             if(len(args) < len(handler["args"]) - handler["unnecessaryArgs"]):
                 return "Too few args!"
+            if(len(args) > len(handler["args"])):
+                return "Too many args"
         
         _args = []
         for i, arg_ in enumerate(args):
@@ -79,7 +82,8 @@ class Assistant:
                     _args.append(float(arg_))
                 elif(arg == datetime):
                     try:
-                        _args.append(datetime.strptime(arg_, "%d.%m.%Y"))
+                        _args.append(string_to_date(arg_))
+                        print(_args[i])
                     except ValueError:
                         return "Invalid date format. Use DD.MM.YYYY"
                 
