@@ -25,7 +25,7 @@ class Phone(Field):
 class Birthday(Field):
     def __init__(self, date):
          self.value = date
-0000000000
+         
     def get_date(self):
          return string_to_date(self.value)
 

@@ -83,7 +83,6 @@ class Assistant:
                 elif(arg == datetime):
                     try:
                         _args.append(string_to_date(arg_))
-                        print(_args[i])
                     except ValueError:
                         return "Invalid date format. Use DD.MM.YYYY"
                 

@@ -95,4 +95,8 @@ def get_birthdays(caller:Assistant, days = 7):
         res += i["name"] + ": " + i["congratulation_date"]
     return res
 
+@assistant.command_handler("test", datetime)
+def test(caller:Assistant, arg:datetime):
+    return f"{str(arg)}: {str(type(arg))}"
+
 assistant.mainLoop()
